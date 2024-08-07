@@ -11,44 +11,42 @@ public class Calculator extends JFrame implements ActionListener {
     private JLabel prompt1 = new JLabel("First Number: ");
     private JLabel prompt2 = new JLabel("Second Number: ");
 
-    private JTextField input1 = new JTextField(20);
-    private JTextField input2 = new JTextField(20);
+    private JTextField input1 = new JTextField(6);
+    private JTextField input2 = new JTextField(6);
 
     private JButton button_sum = new JButton("ADDITION");
     private JButton button_sub = new JButton("SUBTRACTION");
     private JButton button_mul = new JButton("MULTIPLICATION");
     private JButton button_div = new JButton("DIVISION");
 
-    private JTextArea display = new JTextArea(5,20);
+    private JTextArea display = new JTextArea(10,20);
 
     public Calculator(){
-        // Set the layout manager
-        setLayout(new BorderLayout());
+        getContentPane().setLayout(new GridLayout(9,1));
+        setSize(600,600);
+        setLocation(100,150);
+        setTitle("Calculator");
+        setVisible(true);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                System.exit(0);
+            }
+        });
 
-        // Create a panel for labels and text fields
-        JPanel inputPanel = new JPanel();
-        inputPanel.setLayout(new GridLayout(2, 2, 5, 5)); // 2 rows, 2 columns with spacing
 
-        // Add labels and text fields to the panel
-        inputPanel.add(prompt1);
-        inputPanel.add(input1);
-        inputPanel.add(prompt2);
-        inputPanel.add(input2);
 
-        // Create a panel for buttons
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(2, 2, 5, 5)); // 2 rows, 2 columns with spacing
+        getContentPane().add(prompt1);
+        getContentPane().add(input1);
+        getContentPane().add(prompt2);
+        getContentPane().add(input2);
 
-        // Add buttons to the panel
-        buttonPanel.add(button_sum);
-        buttonPanel.add(button_sub);
-        buttonPanel.add(button_mul);
-        buttonPanel.add(button_div);
+        getContentPane().add(button_sum);
+        getContentPane().add(button_sub);
+        getContentPane().add(button_mul);
+        getContentPane().add(button_div);
 
-        // Add components to the frame
-        add(inputPanel, BorderLayout.NORTH);
-        add(buttonPanel, BorderLayout.CENTER);
-        add(new JScrollPane(display), BorderLayout.SOUTH);
+        getContentPane().add(display);
 
         display.setLineWrap(true);
         display.setEditable(false);
@@ -57,12 +55,6 @@ public class Calculator extends JFrame implements ActionListener {
         button_sub.addActionListener(this);
         button_mul.addActionListener(this);
         button_div.addActionListener(this);
-
-        setSize(400, 300);
-        setLocation(100, 150);
-        setTitle("Calculator");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
     }
 
     public void actionPerformed(ActionEvent e) {

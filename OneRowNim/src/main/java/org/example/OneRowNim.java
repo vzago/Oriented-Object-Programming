@@ -194,7 +194,7 @@ public class OneRowNim extends TwoPlayerGame implements CLUIPlayableGame {
                 IPlayer computer = new NimPlayerBad((OneRowNim)game);
                 ((TwoPlayerGame) game).addComputerPlayer(computer);
             }else if(typePlayer == 2){
-                IPlayer computer = new NimPlayerSuper((OneRowNim)game);
+                IPlayer computer= new NimPlayerSuper((OneRowNim)game);
                 ((TwoPlayerGame) game).addComputerPlayer(computer);
             }else{
                 throw new IllegalArgumentException("Invalid type of player");
